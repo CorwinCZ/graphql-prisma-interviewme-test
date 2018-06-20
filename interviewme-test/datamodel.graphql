@@ -1,0 +1,60 @@
+type Candidate {
+  id: ID! @unique
+  firstName: String
+  lastName: String
+  interviews: [Interview!]!
+  technologies: [Technology!]!
+  position: String
+  seniority: String
+  lineManager: User
+  languages: String
+  domain: String
+  teamworkExperience: String
+}
+
+type Interview {
+  id: ID! @unique
+  date: String!
+  interviewedBy: User!
+  nextContactDate: String
+  candidate: Candidate!
+  salary: String
+  education: String
+  summary: String
+  possibleStartingDate: String
+}
+
+type Technology {
+  id: ID! @unique
+  name: String!
+  description: String
+}
+
+type OpenPosition {
+  id: ID! @unique
+  name: String!
+  technology: Technology
+  seniority: String
+  priority: String
+  status: String
+  FTE: Float
+  startDate: String
+  endDate: String
+  prefferedLocation: String
+  responsibleLM: User
+  customer: Customer!
+  notes: String
+}
+
+type Customer {
+  id: ID! @unique
+  location: String
+  domain: String
+}
+
+type User {
+  id: ID! @unique
+  firstName: String
+  lastName: String
+  admin: Boolean
+}
