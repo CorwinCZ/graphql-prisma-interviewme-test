@@ -33,7 +33,7 @@ type Technology {
 type OpenPosition {
   id: ID! @unique
   name: String!
-  technology: Technology
+  technology: [Technology!]!
   seniority: String
   priority: String
   status: String
@@ -48,6 +48,7 @@ type OpenPosition {
 
 type Customer {
   id: ID! @unique
+  name: String
   location: String
   domain: String
 }
@@ -56,5 +57,5 @@ type User {
   id: ID! @unique
   firstName: String
   lastName: String
-  admin: Boolean
+  admin: Boolean @default(value: "false")
 }
