@@ -1,0 +1,116 @@
+# Try to write your query here
+mutation newTech($technology_name: String!, $technology_description: String!) {
+  createTechnology(
+    data: { name: $technology_name, description: $technology_description }
+  ) {
+    id
+    name
+    description
+  }
+}
+
+mutation createNewPosition($newPositionData: OpenPositionCreateInput!) {
+  createOpenPosition(data: $newPositionData) {
+    id
+    name
+    technology {
+      name
+    }
+    seniority
+    priority
+    status
+    FTE
+    startDate
+    endDate
+    prefferedLocation
+    responsibleLM {
+      firstName
+      lastName
+    }
+    customer {
+      name
+    }
+    notes
+  }
+}
+
+
+
+query listTech {
+  technologies {
+    id
+    name
+    description
+  }
+}
+
+query listuser {
+  users {
+    id
+    firstName
+    lastName
+    admin
+  }
+}
+
+query listCustomers {
+  customers {
+    id
+    name
+    domain
+    location
+  }
+}
+
+mutation newCustomer($cus_name: String!, $cus_location: String!) {
+  createCustomer(data: { name: $cus_name, location: $cus_location }) {
+    id
+    name
+    domain
+    location
+  }
+}
+
+mutation newUser($userFirstName: String!, $userLastName: String!) {
+  createUser(
+    data: { firstName: $userFirstName, lastName: $userLastName, admin: true }
+  ) {
+    id
+    firstName
+    lastName
+    admin
+  }
+}
+
+
+{
+  "newPositionData": {
+    "name": "GraphQLdeveloper",
+    "customer": {"connect": {"id": "cjiocmuu3ltr20c2959r1sn4j"}},
+    "technology": {"connect": [{"id": "cjiod52w217560b14ds52hqnl"}, {"id": "cjioa7975z2vt0c29d1y9tsed"}]},
+    "priority": "Super top",
+    "notes": "There is a lot of fields in this type..."
+  },
+  "technology_name": "GraphQL",
+  "technology_description": "Is awesome!",
+  "cus_name": "Interflex",
+  "cus_location": "Earth",
+  "userFirstName": "Petr",
+  "userLastName": "Čaněk"
+}
+
+query listPositions {
+  openPositions {
+    name
+    status
+    priority
+    notes
+    customer {
+      name
+    }
+    technology {
+      name
+      description
+    }
+  }
+}
